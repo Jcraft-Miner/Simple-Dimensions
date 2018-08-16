@@ -1,6 +1,5 @@
 package lumien.simpledimensions.network.handler;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import lumien.simpledimensions.client.ClientHandler;

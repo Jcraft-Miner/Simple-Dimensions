@@ -1,11 +1,9 @@
 package lumien.simpledimensions.client;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import lumien.simpledimensions.SimpleDimensions;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 
@@ -17,7 +15,7 @@ public class ClientHandler
 
 	public ClientHandler()
 	{
-		simpleDimensions = new HashSet<Integer>();
+		simpleDimensions = new HashSet<>();
 	}
 
 	public void cleanUp()
@@ -45,7 +43,7 @@ public class ClientHandler
 	{
 		this.cleanUp();
 
-		this.simpleDimensions = new HashSet<Integer>();
+		this.simpleDimensions = new HashSet<>();
 		this.simpleDimensions.addAll(dimensions.keySet());
 
 		for (Map.Entry<Integer, DimensionType> entry : dimensions.entrySet())

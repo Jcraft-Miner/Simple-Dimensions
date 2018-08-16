@@ -3,7 +3,6 @@ package lumien.simpledimensions.network.handler;
 import lumien.simpledimensions.dimensions.DimensionHandler;
 import lumien.simpledimensions.network.messages.MessageCreateDimension;
 import net.minecraft.network.NetHandlerPlayServer;
-import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;

@@ -1,6 +1,5 @@
 package lumien.simpledimensions.server.commands;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.EnumSet;
 import java.util.List;
@@ -29,7 +28,7 @@ public class CommandTeleportD extends CommandBase
 	{
 		try
 		{
-			copyDataFromOld = Entity.class.getDeclaredMethod((Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment")?"copyDataFromOld":"func_180432_n", Entity.class);
+			copyDataFromOld = Entity.class.getDeclaredMethod((Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment") ? "copyDataFromOld" : "func_180432_n", Entity.class);
 			copyDataFromOld.setAccessible(true);
 		}
 		catch (Exception e)
@@ -38,21 +37,25 @@ public class CommandTeleportD extends CommandBase
 		}
 	}
 
+	@Override
 	public String getName()
 	{
 		return "tpd";
 	}
 
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 2;
 	}
 
+	@Override
 	public String getUsage(ICommandSender sender)
 	{
 		return "simpleDimensions.commands.tpd.usage";
 	}
 
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (args.length < 1)
@@ -132,8 +135,8 @@ public class CommandTeleportD extends CommandBase
 					CommandBase.CoordinateArg coordinatearg = parseCoordinate(((Entity) object).posX, args[b0], true);
 					CommandBase.CoordinateArg coordinatearg1 = parseCoordinate(((Entity) object).posY, args[i++], 0, 0, false);
 					CommandBase.CoordinateArg coordinatearg2 = parseCoordinate(((Entity) object).posZ, args[i++], true);
-					CommandBase.CoordinateArg coordinatearg3 = parseCoordinate((double) ((Entity) object).rotationYaw, args.length > i ? args[i++] : "~", false);
-					CommandBase.CoordinateArg coordinatearg4 = parseCoordinate((double) ((Entity) object).rotationPitch, args.length > i ? args[i] : "~", false);
+					CommandBase.CoordinateArg coordinatearg3 = parseCoordinate(((Entity) object).rotationYaw, args.length > i ? args[i++] : "~", false);
+					CommandBase.CoordinateArg coordinatearg4 = parseCoordinate(((Entity) object).rotationPitch, args.length > i ? args[i] : "~", false);
 					float f;
 
 					if (((Entity) object).dimension != dimensionID)
@@ -286,7 +289,7 @@ public class CommandTeleportD extends CommandBase
 				{
 					e.printStackTrace();
 				}
-				
+
 				entity.world.removeEntity(entity);
 
 				newEntity.forceSpawn = true;
@@ -307,11 +310,13 @@ public class CommandTeleportD extends CommandBase
 		return entity;
 	}
 
+	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos)
 	{
 		return args.length != 1 && args.length != 2 ? null : getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
 	}
 
+	@Override
 	public boolean isUsernameIndex(String[] args, int index)
 	{
 		return index == 0 || index == 1;

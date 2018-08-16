@@ -18,16 +18,16 @@ public class MessageOpenGui implements IMessage
 	{
 		buf.writeInt(guiID);
 	}
-	
+
 	public int getGuiID()
 	{
 		return guiID;
 	}
-	
+
 	public MessageOpenGui setGuiID(int guiID)
 	{
 		this.guiID = guiID;
-		
+
 		return this;
 	}
 

@@ -34,7 +34,7 @@ public class CommandTimeD extends CommandBase
 	}
 
 	@Override
-	public void execute(MinecraftServer server,ICommandSender sender, String[] args) throws CommandException
+	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (args.length > 2)
 		{
@@ -43,7 +43,8 @@ public class CommandTimeD extends CommandBase
 
 			WorldServer worldserver = DimensionManager.getWorld(dimension);
 
-			if (worldserver == null) {
+			if (worldserver == null)
+			{
 				notifyCommandListener(sender, this, "No dimension found with the id %s", new Object[] { Integer.valueOf(dimension) });
 				return;
 			}
@@ -101,7 +102,7 @@ public class CommandTimeD extends CommandBase
 
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos)
-    {
+	{
 		return args.length == 2 ? getListOfStringsMatchingLastWord(args, new String[] { "set", "add", "query" }) : (args.length == 3 && args[1].equals("set") ? getListOfStringsMatchingLastWord(args, new String[] { "day", "night" }) : (args.length == 3 && args[1].equals("query") ? getListOfStringsMatchingLastWord(args, new String[] { "daytime", "gametime" }) : null));
 	}
 }

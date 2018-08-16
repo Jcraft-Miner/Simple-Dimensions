@@ -1,12 +1,10 @@
 package lumien.simpledimensions.network.messages;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -17,31 +15,38 @@ public class MessageDimensionSync implements IMessage
 
 	public MessageDimensionSync()
 	{
-		simpleDimensions = new HashMap<Integer, DimensionType>();
+		simpleDimensions = new HashMap<>();
 	}
 
 	@Override
 	public void fromBytes(ByteBuf buf)
 	{
 		NBTTagCompound tag = ByteBufUtils.readTag(buf);
-		for (String key : tag.getKeySet()) {
+		for (String key : tag.getKeySet())
+		{
 			int dimID;
 			DimensionType dimType = DimensionType.OVERWORLD;
-			try {
+			try
+			{
 				dimID = Integer.parseInt(key);
 			}
-			catch (NumberFormatException e) {
+			catch (NumberFormatException e)
+			{
 				continue;
 			}
-			
+
 			String dimTypeS = tag.getString(key);
-			if (dimTypeS != null) {
-				try {
+			if (dimTypeS != null)
+			{
+				try
+				{
 					dimType = DimensionType.byName(dimTypeS);
 				}
-				catch (IllegalArgumentException e) {}
+				catch (IllegalArgumentException e)
+				{
+				}
 			}
-			
+
 			simpleDimensions.put(dimID, dimType);
 		}
 	}
@@ -50,7 +55,8 @@ public class MessageDimensionSync implements IMessage
 	public void toBytes(ByteBuf buf)
 	{
 		NBTTagCompound tag = new NBTTagCompound();
-		for (Map.Entry<Integer, DimensionType> entry : simpleDimensions.entrySet()) {
+		for (Map.Entry<Integer, DimensionType> entry : simpleDimensions.entrySet())
+		{
 			tag.setString(Integer.toString(entry.getKey()), entry.getValue().getName());
 		}
 		ByteBufUtils.writeTag(buf, tag);
@@ -58,7 +64,8 @@ public class MessageDimensionSync implements IMessage
 
 	public void addDimension(int id, DimensionType type)
 	{
-		if (type == null) {
+		if (type == null)
+		{
 			type = DimensionType.OVERWORLD;
 		}
 		simpleDimensions.put(id, type);

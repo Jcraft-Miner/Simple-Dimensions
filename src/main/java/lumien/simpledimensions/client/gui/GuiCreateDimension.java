@@ -120,25 +120,30 @@ public class GuiCreateDimension extends GuiScreen
 
 		this.saveDirName = getUncollidingSaveDirName(this.mc.getSaveLoader(), this.saveDirName);
 	}
-	
-	private static String getDisplayableName(String input) {
-	    StringBuilder titleCase = new StringBuilder();
-	    boolean nextTitleCase = true;
 
-	    for (char c : input.replace("_", " ").toCharArray()) {
-	        if (Character.isSpaceChar(c)) {
-	            nextTitleCase = true;
-	        } else if (nextTitleCase) {
-	            c = Character.toTitleCase(c);
-	            nextTitleCase = false;
-	        }
+	private static String getDisplayableName(String input)
+	{
+		StringBuilder titleCase = new StringBuilder();
+		boolean nextTitleCase = true;
 
-	        titleCase.append(c);
-	    }
+		for (char c : input.replace("_", " ").toCharArray())
+		{
+			if (Character.isSpaceChar(c))
+			{
+				nextTitleCase = true;
+			}
+			else if (nextTitleCase)
+			{
+				c = Character.toTitleCase(c);
+				nextTitleCase = false;
+			}
 
-	    return titleCase.toString();
+			titleCase.append(c);
+		}
+
+		return titleCase.toString();
 	}
-	
+
 	private void updateDisplayState()
 	{
 		this.btnStructures.displayString = I18n.format("selectWorld.mapFeatures", new Object[0]) + " ";
@@ -151,7 +156,7 @@ public class GuiCreateDimension extends GuiScreen
 		{
 			this.btnStructures.displayString = this.btnStructures.displayString + I18n.format("options.off", new Object[0]);
 		}
-		
+
 		this.btnDimensionType.displayString = I18n.format("selectWorld.mapType", new Object[0]) + " " + I18n.format(WorldType.WORLD_TYPES[this.selectedIndex].getTranslationKey(), new Object[0]);
 		this.btnEnvironmentType.displayString = I18n.format("simpleDimensions.environmentType", new Object[0]) + " " + I18n.format(getDisplayableName(DimensionType.values()[this.selectedEnvironmentIndex].getName()), new Object[0]);
 	}
@@ -234,7 +239,7 @@ public class GuiCreateDimension extends GuiScreen
 				GameType gametype = GameType.getByName(this.gameType);
 				WorldSettings worldsettings = new WorldSettings(i, gametype, this.generateStructures, this.hardcore, WorldType.WORLD_TYPES[this.selectedIndex]);
 				worldsettings.setGeneratorOptions(this.chunkProviderSettingsJson);
-				
+
 				if (this.bonusChest && !this.hardcore)
 				{
 					worldsettings.enableBonusChest();
@@ -323,11 +328,11 @@ public class GuiCreateDimension extends GuiScreen
 		WorldType worldtype = WorldType.WORLD_TYPES[this.selectedIndex];
 		return worldtype != null && worldtype.canBeCreated() ? (worldtype == WorldType.DEBUG_ALL_BLOCK_STATES ? isShiftKeyDown() : true) : false;
 	}
-	
+
 	private boolean canSelectCurEnvironmentType()
 	{
 		DimensionType environmenttype = DimensionType.values()[this.selectedEnvironmentIndex];
-		
+
 		return true;
 	}
 
@@ -401,10 +406,10 @@ public class GuiCreateDimension extends GuiScreen
 
 		if (keyCode == 28 || keyCode == 156)
 		{
-			this.actionPerformed((GuiButton) this.buttonList.get(0));
+			this.actionPerformed(this.buttonList.get(0));
 		}
 
-		((GuiButton) this.buttonList.get(0)).enabled = this.dimensionNameTextField.getText().length() > 0;
+		this.buttonList.get(0).enabled = this.dimensionNameTextField.getText().length() > 0;
 		this.calcSaveDirName();
 	}
 
@@ -445,7 +450,7 @@ public class GuiCreateDimension extends GuiScreen
 			{
 				this.drawString(this.fontRenderer, I18n.format("selectWorld.mapFeatures.info", new Object[0]), this.width / 2 - 150, 122, -6250336);
 			}
-			
+
 			if (this.btnEnvironmentType.visible)
 			{
 				this.drawString(this.fontRenderer, I18n.format("simpleDimensions.environmentType.info", new Object[0]), this.width / 2 - 150, 172, -6250336);

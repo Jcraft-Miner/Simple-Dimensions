@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 public class PacketHandler
 {
 	public static SimpleNetworkWrapper INSTANCE = new SimpleNetworkWrapper(Reference.MOD_ID);
-	
+
 	public static void init()
 	{
 		INSTANCE.registerMessage(HandlerCreateDimension.class, MessageCreateDimension.class, 0, Side.SERVER);

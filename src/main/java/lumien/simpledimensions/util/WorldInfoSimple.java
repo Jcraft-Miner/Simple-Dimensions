@@ -3,7 +3,6 @@ package lumien.simpledimensions.util;
 import javax.annotation.Nullable;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.GameRules;
@@ -22,17 +21,22 @@ public class WorldInfoSimple extends WorldInfo
 	public WorldInfoSimple(NBTTagCompound nbt)
 	{
 		super(nbt);
-		
+
 		this.dimensionType = DimensionType.OVERWORLD;
-		
-		if (nbt.hasKey("dimType")) {
+
+		if (nbt.hasKey("dimType"))
+		{
 			String dimTypeS = nbt.getString("dimType");
-			if (dimTypeS != null) {
-				try {
+			if (dimTypeS != null)
+			{
+				try
+				{
 					DimensionType dimType = DimensionType.byName(dimTypeS);
 					this.dimensionType = dimType;
 				}
-				catch (IllegalArgumentException e) {}
+				catch (IllegalArgumentException e)
+				{
+				}
 			}
 		}
 
@@ -42,11 +46,13 @@ public class WorldInfoSimple extends WorldInfo
 	public WorldInfoSimple(WorldSettings settings, String name, DimensionType dimType)
 	{
 		super(settings, name);
-		
-		if (dimType == null) {
+
+		if (dimType == null)
+		{
 			this.dimensionType = DimensionType.OVERWORLD;
 		}
-		else {
+		else
+		{
 			this.dimensionType = dimType;
 		}
 	}
@@ -58,7 +64,7 @@ public class WorldInfoSimple extends WorldInfo
 		superNbt.setString("dimType", this.dimensionType.getName());
 		return superNbt;
 	}
-	
+
 	@Override
 	public NBTTagCompound getPlayerNBTTagCompound()
 	{
@@ -107,8 +113,9 @@ public class WorldInfoSimple extends WorldInfo
 	{
 		return superInfo.isDifficultyLocked();
 	}
-	
-	public DimensionType getDimensionType() {
+
+	public DimensionType getDimensionType()
+	{
 		return dimensionType;
 	}
 }

@@ -37,7 +37,7 @@ public class CommandSimpleDimensions extends CommandBase
 	}
 
 	@Override
-	public void execute(MinecraftServer server,ICommandSender sender, String[] args) throws CommandException
+	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (args.length == 0)
 		{
@@ -71,21 +71,22 @@ public class CommandSimpleDimensions extends CommandBase
 		{
 			sender.sendMessage(DimensionHandler.getInstance().generateList());
 		}
-		else {
+		else
+		{
 			sender.sendMessage(new TextComponentString(getUsage(sender)));
 		}
 	}
 
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos)
-    {
+	{
 		if (args.length == 1)
 		{
 			return getListOfStringsMatchingLastWord(args, "create", "delete", "list");
 		}
 		else
 		{
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 	}
 }

@@ -21,7 +21,7 @@ public class SimpleDimensionsConfig
 			config.save();
 		}
 	}
-	
+
 	public int startDimensionID()
 	{
 		return startDimensionID;

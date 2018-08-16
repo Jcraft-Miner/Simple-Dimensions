@@ -43,7 +43,7 @@ public class CommandWeatherD extends CommandBase
 	 * Called when a CommandSender executes this command
 	 */
 	@Override
-	public void execute(MinecraftServer server,ICommandSender sender, String[] args) throws CommandException
+	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (args.length >= 1 && args.length <= 3)
 		{
@@ -95,7 +95,8 @@ public class CommandWeatherD extends CommandBase
 					notifyCommandListener(sender, this, "commands.weather.thunder", new Object[0]);
 				}
 			}
-			else {
+			else
+			{
 				notifyCommandListener(sender, this, "No dimension found with the id %s", new Object[] { Integer.valueOf(dimension) });
 			}
 		}
@@ -107,7 +108,7 @@ public class CommandWeatherD extends CommandBase
 
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos)
-    {
+	{
 		return args.length == 2 ? getListOfStringsMatchingLastWord(args, new String[] { "clear", "rain", "thunder" }) : null;
 	}
 }
