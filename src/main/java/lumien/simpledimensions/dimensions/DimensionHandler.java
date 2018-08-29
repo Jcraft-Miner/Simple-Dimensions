@@ -90,7 +90,7 @@ public class DimensionHandler extends WorldSavedData
 	private int findFreeDimensionID()
 	{
 		HashSet<Integer> ids = new HashSet<>();
-		ids.addAll(Arrays.asList(DimensionManager.getIDs()));
+		ids.addAll(Arrays.asList(DimensionManager.getStaticDimensionIDs()));
 
 		int currentID = SimpleDimensions.INSTANCE.config.startDimensionID();
 		while (true)
