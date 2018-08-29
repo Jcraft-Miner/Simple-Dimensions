@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import org.apache.commons.io.FileUtils;
@@ -68,6 +69,14 @@ public class DimensionHandler extends WorldSavedData
 	public boolean isDirty()
 	{
 		return true;
+	}
+	
+	public List<Integer> getDimensionIds()
+	{
+		ArrayList<Integer> dimensionIDs = new ArrayList<Integer>();
+		
+		dimensionIDs.addAll(dimensionInfo.keySet());
+		return dimensionIDs;
 	}
 
 	public void createDimension(EntityPlayerMP playerEntity, WorldInfoSimple worldInfo)

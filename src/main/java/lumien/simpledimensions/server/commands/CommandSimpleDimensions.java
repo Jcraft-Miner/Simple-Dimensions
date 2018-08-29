@@ -2,6 +2,7 @@ package lumien.simpledimensions.server.commands;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lumien.simpledimensions.dimensions.DimensionHandler;
 import lumien.simpledimensions.network.PacketHandler;
@@ -84,9 +85,14 @@ public class CommandSimpleDimensions extends CommandBase
 		{
 			return getListOfStringsMatchingLastWord(args, "create", "delete", "list");
 		}
-		else
+		else if (args.length == 2)
 		{
-			return new ArrayList<>();
+			if (args[0].equals("delete"))
+			{
+				return DimensionHandler.getInstance().getDimensionIds().stream().map(i -> i + "").collect(Collectors.toList());
+			}
 		}
+		
+		return new ArrayList<>();
 	}
 }
